@@ -1,15 +1,6 @@
 #! /bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-#=================================================================#
-#   适用系统:  CentOS 6,7, Debian, Ubuntu                         #
-#   描述: One click Install ShadowsocksR Server                   #
-#   作者: 91yun <https://twitter.com/91yun>                       #
-#   翻译: @小文's blog <https://www.qcgzxw.cn>                    #
-#   鸣谢: @Teddysun <i@teddysun.com>                              #
-#   介绍: https://www.qcgzxw.cn/?p=533                            #
-#=================================================================#
-
 
 
 #Current folder
@@ -255,7 +246,7 @@ function install_ss(){
         /etc/init.d/shadowsocks start
          clear
         echo
-        echo "祝贺！ ShadowsocksR 已经配置成功!"
+        echo "ShadowsocksR 已经配置成功!"
         echo -e "服务器 IP: \033[41;37m ${IP} \033[0m"
         echo -e "服务器 端口: \033[41;37m ${shadowsocksport} \033[0m"
         echo -e "连接密码: \033[41;37m ${shadowsockspwd} \033[0m"
@@ -264,14 +255,7 @@ function install_ss(){
         echo -e "混淆: \033[41;37m http_simple \033[0m"
 		echo
 		echo
-		echo "请下载和你系统版本对应的SSR客户端使用该服务 "
-		echo "SSR所有客户端下载地址："
-		echo -e "\033[34m https://www.qcgzxw.cn/301.html \033[0m"
 		echo
-        echo "Vultr实战搭建ssr+锐速教程（内附视频教程）："
-		echo -e "\033[34m https://www.qcgzxw.cn/1640.html \033[0m"
-		echo
-        echo -e "小文's blog地址：\033[34m www.qcgzxw.cn \033[0m"
         echo
     else
         echo "SSR安装失败!"
