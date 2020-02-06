@@ -28,7 +28,7 @@ function checkos(){
     elif [ ! -z "`cat /etc/issue | grep Ubuntu`" ];then
         OS='Ubuntu'
     else
-        echo "不支持的系统, 请重装之后再试!"
+        echo "not Support OS, please Install then try again later"
         exit 1
     fi
 }
@@ -66,13 +66,13 @@ fi
 function pre_install(){
     # Not support CentOS 5
     if centosversion 5; then
-        echo "不支持 CentOS 5, 请重装系统到 CentOS 6+/Debian 7+/Ubuntu 12+ 再重试."
+        echo "not Support  CentOS 5, Please install the CentOS 6+/Debian 7+/Ubuntu 12+ then try again."
         exit 1
     fi
     # Set ShadowsocksR config password
-     echo "请输入ShadowsocksR连接密码:"
-    read -p "(如不输入密码则默认密码: www.qcgzxw.cn):" shadowsockspwd
-    [ -z "$shadowsockspwd" ] && shadowsockspwd="www.qcgzxw.cn"
+     echo "input ShadowsocksR pwd:"
+    read -p "(default: www.aoereader.com):" shadowsockspwd
+    [ -z "$shadowsockspwd" ] && shadowsockspwd="www.aoereader.com"
     echo
     echo "---------------------------"
     echo "password = $shadowsockspwd"
@@ -81,8 +81,8 @@ function pre_install(){
     # Set ShadowsocksR config port
     while true
     do
-    echo -e "请输入ShadowsocksR连接端口 [1-65535]（建议使用5位数端口）:"
-    read -p "(如不输入端口则默认端口: 25565):" shadowsocksport
+    echo -e "input ShadowsocksR conn port [1-65535]:"
+    read -p "(default: 25565):" shadowsocksport
     [ -z "$shadowsocksport" ] && shadowsocksport="25565"
     expr $shadowsocksport + 0 &>/dev/null
     if [ $? -eq 0 ]; then
@@ -94,10 +94,10 @@ function pre_install(){
             echo
             break
         else
-            echo "端口指定错误，请重新输入正确的端口."
+            echo "assign port err,pls reinput conn port."
         fi
     else
-        echo "端口指定错误，请重新输入正确的端口."
+        echo "assign port err,pls reinput conn port."
     fi
     done
     get_char(){
@@ -110,7 +110,7 @@ function pre_install(){
         stty $SAVEDSTTY
     }
     echo
-    echo "按任意键开始搭建...或者按Ctrl+C退出搭建"
+    echo "press any key start...or press Ctrl+C exit"
     char=`get_char`
     # Install necessary dependencies
     if [ "$OS" == 'CentOS' ]; then
@@ -162,7 +162,7 @@ function firewall_set(){
                 /etc/init.d/iptables save
                 /etc/init.d/iptables restart
             else
-                echo "端口 ${shadowsocksport} 已设置."
+                echo "port ${shadowsocksport} already assigned."
             fi
         else
             echo "WARNING: iptables looks like shutdown or not installed, please manually set it if necessary."
@@ -183,7 +183,7 @@ function firewall_set(){
 					/etc/init.d/iptables save
 					/etc/init.d/iptables restart
 				else
-					echo "端口 ${shadowsocksport} 已设置."
+					echo "port ${shadowsocksport} already assigned."
 				fi
 			else
 				echo "WARNING: firewall like shutdown or not installed, please manually set it if necessary."
@@ -246,19 +246,19 @@ function install_ss(){
         /etc/init.d/shadowsocks start
          clear
         echo
-        echo "ShadowsocksR 已经配置成功!"
-        echo -e "服务器 IP: \033[41;37m ${IP} \033[0m"
-        echo -e "服务器 端口: \033[41;37m ${shadowsocksport} \033[0m"
-        echo -e "连接密码: \033[41;37m ${shadowsockspwd} \033[0m"
-		echo -e "加密: \033[41;37m aes-256-cfb \033[0m"
-        echo -e "协议: \033[41;37m auth_sha1_v4 \033[0m"
-        echo -e "混淆: \033[41;37m http_simple \033[0m"
+        echo "ShadowsocksR install procedure complete"
+        echo -e "server IP: \033[41;37m ${IP} \033[0m"
+        echo -e "server port: \033[41;37m ${shadowsocksport} \033[0m"
+        echo -e "pwd: \033[41;37m ${shadowsockspwd} \033[0m"
+		echo -e "method: \033[41;37m aes-256-cfb \033[0m"
+        echo -e "protocal: \033[41;37m auth_aes128_sha1 \033[0m"
+        echo -e "obfs: \033[41;37m tls1.2_ticket_auth \033[0m"
 		echo
 		echo
 		echo
         echo
     else
-        echo "SSR安装失败!"
+        echo "SSR install failed!"
         install_cleanup
         exit 1
     fi
