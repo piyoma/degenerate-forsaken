@@ -2,7 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
-
+#usage:sudo wget —no-check-certificate  https:/raw.githubusercontent.com/piyoma/degenerate-forsaken/master/shellcode-revise.sh ;sudo bash shellcode-revise.sh
 #Current folder
 cur_dir=`pwd`
 # Get public IP address
