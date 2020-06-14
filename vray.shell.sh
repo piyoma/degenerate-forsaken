@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# This file is accessible as https://install.direct/go.sh
 # Original source is located at github.com/v2ray/v2ray-core/release/install-release.sh
-#usage:sudo wget no-check-certificate https://raw.githubusercontent.com/piyoma/degenerate-forsaken/master/vray.shell.sh;sudo bash vray.shell.sh
+# usage:sudo wget no-check-certificate https://raw.githubusercontent.com/piyoma/degenerate-forsaken/master/vray.shell.sh;sudo bash vray.shell.sh
 # If not specify, default meaning of return value:
 # 0: Success
 # 1: System error
